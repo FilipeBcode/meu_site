@@ -1,63 +1,254 @@
+/* Variáveis CSS para fácil personalização */
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-color: #64ffda;
+    --hover-color: #00e5b9;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-start: #1e1e1e;
+    --gradient-end: #2d2d2d;
+    --border-radius: 16px;
+    --transition-speed: 0.4s;
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #454444;
-    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    font-family: 'Inter', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    color: var(--text-primary);
 }
 
 .container {
     text-align: center;
+    padding: 20px;
+    max-width: 100%;
 }
 
+/* Card com design moderno */
 .card {
-    background-color: #1f1f1f;
-    padding: 30px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: rgba(0, 0, 0, 100%);
+    background: linear-gradient(145deg, var(--gradient-start), var(--gradient-end));
+    padding: 40px 30px;
+    border-radius: var(--border-radius);
+    width: 350px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px var(--shadow-color);
+}
+
+/* Efeito de brilho no card */
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+/* Avatar com efeito de borda */
+.avatar-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 25px;
 }
 
 .avatar {
-    width: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 20px;
-    padding: 5%;
-    border-color: rgb(201, 183, 183);
+    border: 3px solid var(--accent-color);
+    padding: 3px;
+    transition: transform var(--transition-speed);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+/* Textos com espaçamento e cores modernas */
 h1 {
-    color: #fff;
-    margin: 0;
+    color: var(--text-primary);
+    margin: 0 0 5px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .location {
-    color: #c4f82a;
-    font-weight: bold;
-    margin: 5px 0 15px;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 5px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.location::before {
+    content: '📍';
+    margin-right: 5px;
 }
 
 .bio {
-    color: #ccc;
-    font-size: 14px;
-    margin-bottom: 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Links com efeitos modernos e sombreamento leve */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Adicionando sombreamento leve na div de contatos */
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 14px;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .links a {
-    display: block;
-    background-color: #333;
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
     text-decoration: none;
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    padding: 14px;
+    border-radius: 12px;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Adicionando sombreamento leve em cada link */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--accent-color);
+    transition: width var(--transition-speed) ease;
+    z-index: -1;
 }
 
 .links a:hover {
-    background-color: #c4f82a;
-    color: black;
+    color: #000;
+    /* Aumentando o sombreamento no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.links a:hover::before {
+    width: 100%;
+}
+
+/* Ícones para os links (opcional) */
+.links a i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+    
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .bio {
+        font-size: 0.9rem;
+    }
+    
+    .links {
+        padding: 12px;
+    }
+}
+
+/* Modo claro (opcional) */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #f5f5f5;
+        --card-bg: #ffffff;
+        --text-primary: #333333;
+        --text-secondary: #666666;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --gradient-start: #ffffff;
+        --gradient-end: #f0f0f0;
+    }
+    
+    .links {
+        background-color: rgba(0, 0, 0, 0.03);
+        box-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.05),
+            0 1px 3px rgba(0, 0, 0, 0.03),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
 }
